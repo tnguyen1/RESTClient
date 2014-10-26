@@ -2005,7 +2005,7 @@ restclient.main = {
       exclude: false,
       type: type,
       timeout: 5000,
-      animate: 'bounce',
+      animate: 'none',
       title: text
     });
   },
