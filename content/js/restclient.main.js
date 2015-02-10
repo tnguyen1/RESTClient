@@ -1064,7 +1064,6 @@ restclient.main = {
   },
   showResponse: function () {
     $("#response").show();
-    document.getElementById('response').scrollIntoView(true);
     return false;
   },
   showCurl: function() {
