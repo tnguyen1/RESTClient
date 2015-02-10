@@ -649,6 +649,12 @@ restclient.main = {
       return false;
     });
   },
+  showNewCustomHeader: function() {
+    $('#modal-custom-header [name="name"]').val('');
+    $('#modal-custom-header [name="value"]').val('');
+    $("#modal-custom-header").data('source-header-id', '');
+    restclient.main.showModal('modal-custom-header');
+  },
   showModal: function (modalId) {
     $('#' + modalId).modal('show').on('shown', function () {
       $(this).find('input').first().focus();
@@ -777,10 +783,11 @@ restclient.main = {
    if (text.length > restclient.main.headerLabelMaxLength)
      text = text.substr(0, restclient.main.headerLabelMaxLength - 3) + "...";
 
-   var tag = $('<span />').addClass('label').text(text).attr('data-header-id', id)
+   var tag = $('<span />').addClass('label').attr('data-header-id', id)
               .attr("title", name + ": " + value)
               .attr('header-name', name)
               .attr('header-value', value)
+              .append($('<span />').addClass('headerText').text(text))
               .append($('<a />').addClass('close').text('×').bind('click', restclient.main.removeHttpRequestHeader));
     tag.bind('click', restclient.main.editHttpRequestHeader);
     $('#request-headers .tag').append(tag);
@@ -831,6 +838,7 @@ restclient.main = {
       .attr('header-value', value)
       .attr("title", name + ": " + value)
       .attr('data-header-id', newId)
+      .find('.headerText')
       .text(text);
       
       var tr = $('tr[data-header-id="' + oldId + '"]');
@@ -895,6 +903,7 @@ restclient.main = {
         restclient.main.updateFavoriteHeadersMenu();
       }
     }
+
     var oldId = $('#modal-custom-header').data('source-header-id');
     if (!oldId)
       this.addHttpRequestHeader(inputName.val(), inputValue.val());
