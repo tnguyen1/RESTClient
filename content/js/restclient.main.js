@@ -1690,7 +1690,6 @@ restclient.main = {
     auto_oauth_timestamp.click(autoTimeStamp);
     auto_oauth_nonce.click(autoNonce);
 
-
     //Load oauth keys from preferences
     var sign_consumer_key         = $('#signature-request [name="consumer_key"]'),
         sign_consumer_secret      = $('#signature-request [name="consumer_secret"]'),
@@ -1905,7 +1904,6 @@ restclient.main = {
         }
       }
       
-      
       var sign = {
                   action: requestMethod,
                   path: requestUrl,
@@ -1962,7 +1960,7 @@ restclient.main = {
       restclient.message.show({
         id: 'alertInvalidRequestUrl',
         type: 'error',
-        title: 'The request URL is invalidate',
+        title: 'The request URL is invalid',
         message: 'Please check your request URL!',
         buttons: [
           {title: 'Okay', class: 'btn-danger', callback: function () { $('#request-url').focus().select(); $('#alertInvalidRequestUrl').alert('close');  }}
@@ -2017,8 +2015,8 @@ restclient.main = {
       restclient.message.show({
         id: 'alertInvalidRequestUrl',
         type: 'error',
-        title: 'The request URL is invalidate',
-        message: 'To bookmark a request you must input a validate request URL!',
+        title: 'The request URL is invalid',
+        message: 'To bookmark a request you must input a valid request URL!',
         buttons: [
           {title: 'Okay', class: 'btn-danger', callback: function () { $('#request-url').focus().select(); $('#alertInvalidRequestUrl').alert('close');  }}
         ],
