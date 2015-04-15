@@ -1229,8 +1229,11 @@ restclient.main = {
     $('#response-body-raw pre').text(responseData);
     var reformatted = responseData;
     try{
-      reformatted = JSON.stringify(JSON.parse(responseData), null, "  ");
-    }catch(e) {}
+      // TNG: issue with big number conversion
+      // reformatted = JSON.stringify(JSON.parse(responseData), null, "  ");
+      reformatted = responseData.replace(/([\[:])?(\d+)([,\}\]])/g, "$1\"$2|number\"$3");
+      reformatted = JSON.stringify(JSON.parse(reformatted), null, "  ");
+    }catch(e) { console.log("Uh-oh! " + e); }
     $('#response-body-highlight pre').empty().removeClass('prettyprint linenums');
     $.JSONView(reformatted, $('#response-body-highlight pre'));
     //$('#response-body-highlight pre').text(reformatted);
